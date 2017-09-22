@@ -22,8 +22,8 @@ public class Lab22_09 {
         String nombreArchivo="agenda.ag";
          AccesoAleatorio ac= new AccesoAleatorio();
         ac.escritura(ruta+nombreArchivo);
-        
-        System.out.println(ruta);
+        ac.lectura(ruta+nombreArchivo);
+     
        
     }
     
