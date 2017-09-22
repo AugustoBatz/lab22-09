@@ -30,6 +30,12 @@ public class AccesoAleatorio {
             int CantCont=archivo.readByte();
             System.out.println("Numero de contenedores "+CantCont);
            
+            
+                
+           ///////imprime primer contenedor
+            for (int i = 0; i < 2; i++) {
+                
+            
             byte nom[]=new byte[2];
             archivo.read(nom);
             String nomString= new String(nom);
@@ -38,6 +44,10 @@ public class AccesoAleatorio {
             archivo.seek(DirCont-1);
             int num=archivo.readInt();
             System.out.println(num);
+            
+            }
+            /////////////// 
+            
             
             
             archivo.close();
@@ -66,6 +76,8 @@ public class AccesoAleatorio {
             
             //////////indice
              archivo.writeByte(4);
+             
+             /////////////////
             archivo.writeByte('A');
             archivo.writeByte('B');
             archivo.writeByte(16);
