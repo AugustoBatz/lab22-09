@@ -19,33 +19,52 @@ public class AccesoAleatorio {
     
     public void lectura(String ruta)
     {
+        System.out.println("entra");
         try {
             RandomAccessFile archivo = new RandomAccessFile(ruta,"r");
-            System.out.println((char)archivo.readByte());
-            System.out.println((char)archivo.readByte());
+            int var=0;
+            if((char)archivo.readByte()=='A')
+            {   var++;
+                if((char)archivo.readByte()=='G')
+                {
+                    var++;
+                    System.out.println("Archivo compatible");
+                    int PosicionDelIndice=archivo.readByte();
+                    var++;
+                    System.out.println("Posicion del indice "+PosicionDelIndice);
+                    archivo.seek(PosicionDelIndice-1);
+                    int CantCont=archivo.readByte();
+                    var++;
+                    System.out.println("Numero de contenedores "+CantCont);
+                    int tn=archivo.readByte();
+                    var++;
+                    for (int i = 0; i < CantCont; i++) {
+                        for (int j = 0; j < tn; j++) {
+                            System.out.print((char)archivo.readByte());
+                            var++;
+                            
+                        }
+                        byte poscel=archivo.readByte();
+                        var++;
+                        archivo.seek(poscel-1);
+                        int cel=archivo.readInt();
+                        var=var+4;
+                        System.out.println(" Telefono: "+cel);
+                        System.out.println("Posicion del telefono "+poscel);
+                        System.out.println("numero "+var);
+                        archivo.seek(var);
+                        tn=archivo.readByte();
+                        System.out.println("sig tam nom"+tn);
+                    }
+                }
+            }
             
-            int PosicionDelIndice=archivo.readByte();
-            System.out.println("Posicion del inidice "+PosicionDelIndice);
-            archivo.seek(PosicionDelIndice-1);
-            int CantCont=archivo.readByte();
-            System.out.println("Numero de contenedores "+CantCont);
+           
            
             
                 
            ///////imprime primer contenedor
-            for (int i = 0; i < 2; i++) {
-                
-            
-            byte nom[]=new byte[2];
-            archivo.read(nom);
-            String nomString= new String(nom);
-            System.out.println(nomString);
-            int DirCont=archivo.readByte();
-            archivo.seek(DirCont-1);
-            int num=archivo.readInt();
-            System.out.println(num);
-            
-            }
+           
             /////////////// 
             
             
@@ -62,38 +81,41 @@ public class AccesoAleatorio {
     {
         try {
             RandomAccessFile archivo = new RandomAccessFile(ruta,"rw");
-            archivo.writeByte('A');
-            archivo.writeByte('G');
+            archivo.writeByte('A');//0
+            archivo.writeByte('G');//1
             
             //////puntero
-            archivo.writeByte(20);
+            archivo.writeByte(20);//2
             //////contenedores
           
-            archivo.writeInt(77677777);
-            archivo.writeInt(77677775);
-            archivo.writeInt(77677776);
-            archivo.writeInt(77677771);
+            archivo.writeInt(77677777);//3 4 5 6
+            archivo.writeInt(77677775);//8 9 10 11
+            archivo.writeInt(77677776);//12 13 14 15
+            archivo.writeInt(77677771);//16 17 18 19
             
             //////////indice
-             archivo.writeByte(4);
+             archivo.writeByte(4);//20
              
              /////////////////
-            archivo.writeByte('A');
-            archivo.writeByte('B');
-            archivo.writeByte(16);
+            archivo.write(2);
+            archivo.writeByte('A');//21
+            archivo.writeByte('B');//22
+            archivo.writeByte(16);//23
             
-            archivo.writeByte('x');
-            archivo.writeByte('b');
-            archivo.writeByte(4);
+            archivo.write(2);
+            archivo.writeByte('x');//24
+            archivo.writeByte('b');//25
+            archivo.writeByte(3);//26
             
-            archivo.writeByte('t');
-            archivo.writeByte('y');
-            archivo.writeByte(12);
+            archivo.write(2);
+            archivo.writeByte('t');//27
+            archivo.writeByte('y');//28
+            archivo.writeByte(12);//29
             
-            
-            archivo.writeByte('f');
-            archivo.writeByte('s');
-            archivo.writeByte(8);
+            archivo.write(2);
+            archivo.writeByte('f');//30
+            archivo.writeByte('s');//31
+            archivo.writeByte(8);//32
             
             
             archivo.close();
