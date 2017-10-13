@@ -18,10 +18,11 @@ public class Lab22_09 {
     public static void main(String[] args) {
         
         String ruta= System.getProperty("user.home");
-        ruta=ruta + System.getProperty("file.separator")+"Documentos"+System.getProperty("file.separator");
+        ruta=ruta + System.getProperty("file.separator")+"Documents"+System.getProperty("file.separator");
         String nombreArchivo="agenda.ag";
-         AccesoAleatorio ac= new AccesoAleatorio();
+        AccesoAleatorio ac= new AccesoAleatorio();
         ac.escritura(ruta+nombreArchivo);
+       
         ac.lectura(ruta+nombreArchivo);
      
        
